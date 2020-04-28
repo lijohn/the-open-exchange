@@ -12,7 +12,7 @@ export class CreateComponent implements OnInit {
   newMarket:any = {
     name: '',
     description: '',
-    end: ''
+    end: null
   };
 
   constructor(private market:MarketsService, private router:Router) { }
