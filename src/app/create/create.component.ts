@@ -21,6 +21,16 @@ export class CreateComponent implements OnInit {
   }
 
   createMarket() {
+    let current = new Date();
+    let defaultDate = new Date();
+    defaultDate.setDate(defaultDate.getDate() + 7);
+    let dateISO = defaultDate.toISOString();
+    dateISO = dateISO.substring(0, dateISO.length - 8);
+    if (this.newMarket.end == null) this.newMarket.end = dateISO;
+    else {
+      let end = new Date(this.newMarket.end);
+      if (end <= current) this.newMarket.end = dateISO;
+    }
     this.market.createMarket(this.newMarket).subscribe(() => this.router.navigateByUrl('/markets'))
   }
 
