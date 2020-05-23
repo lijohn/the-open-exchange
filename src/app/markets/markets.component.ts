@@ -13,7 +13,13 @@ export class MarketsComponent implements OnInit {
   constructor(private market: MarketsService) { }
 
   ngOnInit() {
-    this.market.getAllMarkets().subscribe(result => this.markets = result);
+    this.market.getAllMarkets().subscribe(result => {
+      for (let market of result) {
+        market.create_time = market.create_time.replace(' ', 'T');
+        market.end_time = market.end_time.replace(' ', 'T');
+      }
+      this.markets = result;
+    });
   }
 
 }

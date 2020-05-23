@@ -33,7 +33,11 @@ export class OrderComponent implements OnInit {
 
   // rewrite the getMarket() route instead of finding here
   getMarketData(): void {
-    this.market.getMarket(this.order.security).subscribe(result => this.currentMarket = result);
+    this.market.getMarket(this.order.security).subscribe(result => {
+      this.currentMarket = result;
+      this.currentMarket.create_time = this.currentMarket.create_time.replace(' ', 'T');
+      this.currentMarket.end_time = this.currentMarket.end_time.replace(' ', 'T');
+    });
   }
 
   addOrder(): void {
