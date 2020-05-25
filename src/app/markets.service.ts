@@ -40,4 +40,8 @@ export class MarketsService {
     return this.http.get<Market[]>(`${this.url}/closed`);
   }
 
+  castVote(id:number, user:any, vote:number): Observable<string> {
+    return this.http.post<string>(`${this.url}/vote/${id}`, { user: user.user, pin: user.pin, vote });
+  }
+
 }

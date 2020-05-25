@@ -9,4 +9,5 @@ export class Market {
   best_bid_volume?: number;
   best_ask?: number;
   best_ask_volume?: number;
+  in_settle?: number;
 }

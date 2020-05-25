@@ -15,6 +15,7 @@ export class OrderComponent implements OnInit {
   order: Order = new Order;
   bidask: boolean = true;
   message: string;
+  vote: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -71,4 +72,8 @@ export class OrderComponent implements OnInit {
       });
   }
 
+  castVote(): void {
+    this.market.castVote(this.order.security, { user: this.order.user, pin: this.order.pin }, this.vote)
+      .subscribe(result => this.message = result);
+  }
 }

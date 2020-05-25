@@ -2,33 +2,45 @@
   <div class="card card-body">
     <h4 class="card-title">{{currentMarket.market_name}}</h4>
     <h5 class="card-subtitle mb-2 text-muted">{{currentMarket.last_traded | currency}}</h5>
-    <p *ngIf="currentMarket.best_bid" class="card-text">Bid: {{currentMarket.best_bid | currency}} ({{currentMarket.best_bid_volume}} contracts)</p>
-    <p *ngIf="!currentMarket.best_bid">Bid: none</p>
-    <p *ngIf="currentMarket.best_ask" class="card-text">Ask: {{currentMarket.best_ask | currency}} ({{currentMarket.best_ask_volume}} contracts)</p>
-    <p *ngIf="!currentMarket.best_ask">Ask: none</p>
+    <p *ngIf="!currentMarket.in_settle && currentMarket.best_bid" class="card-text">Bid: {{currentMarket.best_bid | currency}} ({{currentMarket.best_bid_volume}} contracts)</p>
+    <p *ngIf="!currentMarket.in_settle && !currentMarket.best_bid">Bid: none</p>
+    <p *ngIf="!currentMarket.in_settle && currentMarket.best_ask" class="card-text">Ask: {{currentMarket.best_ask | currency}} ({{currentMarket.best_ask_volume}} contracts)</p>
+    <p *ngIf="!currentMarket.in_settle && !currentMarket.best_ask">Ask: none</p>
     <p class="card-text">Created: {{currentMarket.create_time | date: 'short'}}</p>
     <p class="card-text">Ending: {{currentMarket.end_time | date: 'short'}}</p>
     <p class="card-text">Description: {{currentMarket.market_descriptor}}</p>
   </div>
   <br>
-  <h3>Place Order</h3>
-  <form>
-    <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
-      <label class="btn btn-outline-dark" [class.active]="bidask" active>
-        <input type="radio" name="bid" [value]="true" autocomplete="off" [(ngModel)]="bidask"> Bid
-      </label>
-      <label class="btn btn-outline-dark" [class.active]="!bidask">
-        <input type="radio" name="ask" [value]="false" autocomplete="off" [(ngModel)]="bidask"> Ask
-      </label>
-    </div>
-    <div class="form-group">
-      <input type="number" step="0.01" class="form-control" placeholder="Price" [(ngModel)]="order.price" name="price">
-    </div>
-    <div class="form-group">
-      <input type="number" min="0" class="form-control" placeholder="Volume" [(ngModel)]="order.volume" name="volume">
-    </div>
-    <p style="color: darkred;">{{message}}</p>
-    <button type="submit" class="btn btn-outline-primary" (click)="addOrder()">Place Order</button>
-    <button type="button" class="btn btn-outline-danger" (click)="deleteExposure()">Delete Exposure</button>
-  </form>
+  <div *ngIf="currentMarket.in_settle">
+    <h3>Place Vote</h3>
+    <form>
+      <div class="form-group">
+        <input type="number" step="0.1" class="form-control" placeholder="Settle Value" [(ngModel)]="vote" name="vote">
+      </div>
+      <p style="color: darkred;">{{message}}</p>
+      <button type="submit" class="btn btn-outline-primary" (click)="castVote()">Cast Vote</button>
+    </form>
+  </div>
+  <div *ngIf="!currentMarket.in_settle">
+    <h3>Place Order</h3>
+    <form>
+      <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+        <label class="btn btn-outline-dark" [class.active]="bidask" active>
+          <input type="radio" name="bid" [value]="true" autocomplete="off" [(ngModel)]="bidask"> Bid
+        </label>
+        <label class="btn btn-outline-dark" [class.active]="!bidask">
+          <input type="radio" name="ask" [value]="false" autocomplete="off" [(ngModel)]="bidask"> Ask
+        </label>
+      </div>
+      <div class="form-group">
+        <input type="number" step="0.01" class="form-control" placeholder="Price" [(ngModel)]="order.price" name="price">
+      </div>
+      <div class="form-group">
+        <input type="number" min="0" class="form-control" placeholder="Volume" [(ngModel)]="order.volume" name="volume">
+      </div>
+      <p style="color: darkred;">{{message}}</p>
+      <button type="submit" class="btn btn-outline-primary" (click)="addOrder()">Place Order</button>
+      <button type="button" class="btn btn-outline-danger" (click)="deleteExposure()">Delete Exposure</button>
+    </form>
+  </div>
 </div>
