@@ -14,6 +14,7 @@ import { SettlementComponent } from './settlement/settlement.component';
 
 import { CookieService } from 'ngx-cookie-service';
 import { UserComponent } from './user/user.component';
+import { ClosedComponent } from './closed/closed.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UserComponent } from './user/user.component';
     CreateComponent,
     SignupComponent,
     SettlementComponent,
-    UserComponent
+    UserComponent,
+    ClosedComponent
   ],
   imports: [
     BrowserModule,

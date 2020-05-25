@@ -18,4 +18,8 @@ export class UserComponent implements OnInit {
     });
   }
 
+  deleteExposure() {
+    this.userService.deleteExposure().subscribe(() => this.ngOnInit());
+  }
+
 }

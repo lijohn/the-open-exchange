@@ -5,12 +5,14 @@ import { CreateComponent } from './create/create.component';
 import { SignupComponent } from './signup/signup.component';
 import { OrderComponent } from './order/order.component';
 import { UserComponent } from './user/user.component';
+import { ClosedComponent } from './closed/closed.component';
 
 const routes: Routes = [
   {path: '', component: SignupComponent},
   {path: 'create', component: CreateComponent},
   {path: 'markets', component: MarketsComponent},
   {path: 'markets/:id', component: OrderComponent},
+  {path: 'closed', component: ClosedComponent},
   {path: 'users/:user', component: UserComponent}
 ];
 

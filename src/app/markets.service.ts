@@ -35,4 +35,9 @@ export class MarketsService {
   deleteExposure(id:number, user:any): Observable<string> {
     return this.http.put<string>(`${this.url}/markets/${id}`, user);
   }
+
+  getAllClosed(): Observable<Market[]> {
+    return this.http.get<Market[]>(`${this.url}/closed`);
+  }
+
 }

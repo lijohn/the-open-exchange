@@ -39,4 +39,8 @@ export class UsersService {
   getUserInfo(): Observable<any> {
     return this.http.put<any>(`${this.url}/users/${this.getUser()}`, { pin: this.getPin() } );
   }
+
+  deleteExposure(): Observable<any> {
+    return this.http.post<any>(`${this.url}/users/${this.getUser()}`, { pin: this.getPin() } );
+  }
 }

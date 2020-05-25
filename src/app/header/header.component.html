@@ -10,7 +10,10 @@
       <a class="nav-link active" routerLink="/users/{{user}}">{{user}}'s Profile</a>
     </li>
     <li *ngIf="user" class="nav-item">
-      <a class="nav-link active" routerLink="/markets">View Markets</a>
+      <a class="nav-link active" routerLink="/markets">Active Markets</a>
+    </li>
+    <li *ngIf="user" class="nav-item">
+      <a class="nav-link active" routerLink="/closed">Closed Markets</a>
     </li>
     <li *ngIf="user" class="nav-item">
       <a class="nav-link active" routerLink="/create">Create Market</a>

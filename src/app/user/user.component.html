@@ -10,4 +10,5 @@
   <p *ngFor="let bid of user.list_of_bids">{{bid}}</p>
   <h3><strong>Asks</strong></h3>
   <p *ngFor="let ask of user.list_of_asks">{{ask}}</p>
+  <button type="button" class="btn btn-outline-danger" (click)="deleteExposure()">Delete All Exposure</button>
 </div>
