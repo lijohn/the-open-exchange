@@ -44,4 +44,8 @@ export class MarketsService {
     return this.http.post<string>(`${this.url}/vote/${id}`, { user: user.user, pin: user.pin, vote });
   }
 
+  getPayments(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/payments`);
+  }
+
 }

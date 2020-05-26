@@ -15,6 +15,7 @@ import { SettlementComponent } from './settlement/settlement.component';
 import { CookieService } from 'ngx-cookie-service';
 import { UserComponent } from './user/user.component';
 import { ClosedComponent } from './closed/closed.component';
+import { FillsComponent } from './fills/fills.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ClosedComponent } from './closed/closed.component';
     SignupComponent,
     SettlementComponent,
     UserComponent,
-    ClosedComponent
+    ClosedComponent,
+    FillsComponent
   ],
   imports: [
     BrowserModule,
