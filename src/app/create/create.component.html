@@ -6,9 +6,20 @@
     <div class="form-group">
       <textarea class="form-control" placeholder="Description" [(ngModel)]="newMarket.description" name="description"></textarea>
     </div>
-    <div class="form-group">
-      <input type="datetime-local" class="form-control" placeholder="End Date" [(ngModel)]="newMarket.end" name="end">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="group-select">Group</label>
+      </div>
+      <select class="custom-select" id="group-select" [(ngModel)]="groupName" name="group">
+        <option selected disabled>Choose a group</option>
+        <option value="test">Test</option>
+      </select>
     </div>
+    <!-- <div class="form-group">
+      <input type="datetime-local" class="form-control" placeholder="End Date" [(ngModel)]="newMarket.end" name="end">
+    </div> -->
     <button type="submit" class="btn btn-outline-dark" (click)="createMarket()">Create Market</button>
   </form>
+  <br>
+  <p *ngIf="error" style="color: darkred;">Fields missing</p>
 </div>

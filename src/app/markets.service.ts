@@ -16,8 +16,8 @@ export class MarketsService {
     return this.http.get<Market>(`${this.url}/markets/${id}`);
   }
 
-  getAllMarkets(): Observable<Market[]> {
-    return this.http.get<Market[]>(`${this.url}/markets`);
+  getAllMarkets(user:string, pin:string): Observable<Market[]> {
+    return this.http.put<Market[]>(`${this.url}/markets`, {user, pin});
   }
 
   createMarket(market:Market): Observable<void> {

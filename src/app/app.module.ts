@@ -16,6 +16,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { UserComponent } from './user/user.component';
 import { ClosedComponent } from './closed/closed.component';
 import { FillsComponent } from './fills/fills.component';
+import { GroupComponent } from './group/group.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FillsComponent } from './fills/fills.component';
     SettlementComponent,
     UserComponent,
     ClosedComponent,
-    FillsComponent
+    FillsComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,

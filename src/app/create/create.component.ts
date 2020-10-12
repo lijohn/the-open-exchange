@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MarketsService } from '../markets.service';
-import { Market } from '../market';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,8 +11,13 @@ export class CreateComponent implements OnInit {
   newMarket:any = {
     name: '',
     description: '',
+    group: null,
     end: null
   };
+
+  groupName: string;
+
+  error: boolean = false;
 
   constructor(private market:MarketsService, private router:Router) { }
 
@@ -21,9 +25,15 @@ export class CreateComponent implements OnInit {
   }
 
   createMarket() {
+    if (this.newMarket.name == '' || this.newMarket.description == '' || this.newMarket.group == "Choose a group") {
+      this.error = true;
+      return;
+    }
+
+    // filter through for groupId
     let current = new Date();
     let defaultDate = new Date();
-    defaultDate.setDate(defaultDate.getDate() + 7);
+    defaultDate.setDate(defaultDate.getDate() + 100000);
     let dateISO = defaultDate.toISOString();
     dateISO = dateISO.substring(0, dateISO.length - 8);
     if (this.newMarket.end == null) this.newMarket.end = dateISO;

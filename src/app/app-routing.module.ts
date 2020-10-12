@@ -7,6 +7,7 @@ import { OrderComponent } from './order/order.component';
 import { UserComponent } from './user/user.component';
 import { ClosedComponent } from './closed/closed.component';
 import { FillsComponent } from './fills/fills.component';
+import { GroupComponent } from './group/group.component';
 
 const routes: Routes = [
   {path: '', component: SignupComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'markets/:id', component: OrderComponent},
   {path: 'closed', component: ClosedComponent},
   {path: 'payments', component: FillsComponent},
-  {path: 'users/:user', component: UserComponent}
+  {path: 'users/:user', component: UserComponent},
+  {path: 'group/:id', component: GroupComponent}
 ];
 
 @NgModule({

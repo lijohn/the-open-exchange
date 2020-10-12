@@ -12,3 +12,17 @@
   <p *ngFor="let ask of user.list_of_asks">{{ask}}</p>
   <button type="button" class="btn btn-outline-danger" (click)="deleteExposure()">Delete All Exposure</button>
 </div>
+<div *ngIf="user" class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Groups</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let group of groups" routerLink="/group/{{group.id}}">
+        <td>{{user.group.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

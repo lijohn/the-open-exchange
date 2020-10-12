@@ -13,6 +13,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getUserInfo().subscribe(result => {
+      this.userService.setGroups(result.list_of_groups);
       this.user = result;
       if (this.user.list_of_positions.length == 0) this.user.list_of_positions.push('No outstanding positions');
     });

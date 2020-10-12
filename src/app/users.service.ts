@@ -36,6 +36,14 @@ export class UsersService {
     return this.cookies.get('pin');
   }
 
+  setGroups(user: any): void {
+    this.cookies.set('groups', user);
+  }
+
+  getGroups(): any {
+    return this.cookies.get('groups');
+  }
+
   getUserInfo(): Observable<any> {
     return this.http.put<any>(`${this.url}/users/${this.getUser()}`, { pin: this.getPin() } );
   }
