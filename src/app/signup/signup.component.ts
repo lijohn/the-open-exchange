@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.userService.getUser();
-    if (this.user) this.router.navigateByUrl('/markets');
+    if (this.user) this.router.navigateByUrl(`/users/${this.user}`);
   }
 
   addUser() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MarketsService } from '../markets.service';
 import { Router } from '@angular/router';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-create',
@@ -15,13 +16,13 @@ export class CreateComponent implements OnInit {
     end: null
   };
 
-  groupName: string;
-
+  groups: any[] = [];
   error: boolean = false;
 
-  constructor(private market:MarketsService, private router:Router) { }
+  constructor(private market:MarketsService, private router:Router, private user: UsersService) { }
 
   ngOnInit() {
+    this.user.getUserInfo().subscribe(result => this.groups = result.list_of_groups)
   }
 
   createMarket() {
@@ -29,8 +30,6 @@ export class CreateComponent implements OnInit {
       this.error = true;
       return;
     }
-
-    // filter through for groupId
     let current = new Date();
     let defaultDate = new Date();
     defaultDate.setDate(defaultDate.getDate() + 100000);

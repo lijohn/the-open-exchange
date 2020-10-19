@@ -10,4 +10,6 @@ export class Market {
   best_ask?: number;
   best_ask_volume?: number;
   in_settle?: number;
+  group_id: number;
+  group_name: string;
 }

@@ -11,3 +11,7 @@ tbody > tr:hover {
   background-color: gainsboro;
   cursor: pointer;
 }
+
+.text-primary {
+  cursor: pointer;
+}

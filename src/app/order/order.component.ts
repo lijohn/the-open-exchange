@@ -27,21 +27,27 @@ export class OrderComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.order.security = +params.id;
       this.getMarketData();
+      
     })
     this.order.user = this.userService.getUser();
     this.order.pin = this.userService.getPin();
   }
 
-  // rewrite the getMarket() route instead of finding here
+  toggleBidAsk(value: boolean): void {
+    this.bidask = value;
+  }
+
   getMarketData(): void {
     this.market.getMarket(this.order.security).subscribe(result => {
       this.currentMarket = result;
       this.currentMarket.create_time = this.currentMarket.create_time.replace(' ', 'T');
-      this.currentMarket.end_time = this.currentMarket.end_time.replace(' ', 'T');
+      // this.currentMarket.end_time = this.currentMarket.end_time.replace(' ', 'T');
+      this.order.group = result.group_id;
     });
   }
 
   addOrder(): void {
+    console.log(this.bidask);
     if (this.bidask) this.market.bid(this.order).subscribe(result => {
       if ((typeof result) == 'string') this.message = result;
       else {

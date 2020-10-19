@@ -4,5 +4,7 @@ export class Order {
   pin: string;
   price: number;
   volume: number;
+  group_name: string;
+  group: number;
   time?: string;
 }

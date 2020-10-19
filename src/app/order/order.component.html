@@ -7,7 +7,8 @@
     <p *ngIf="!currentMarket.in_settle && currentMarket.best_ask" class="card-text">Ask: {{currentMarket.best_ask | currency}} ({{currentMarket.best_ask_volume}} contracts)</p>
     <p *ngIf="!currentMarket.in_settle && !currentMarket.best_ask">Ask: none</p>
     <p class="card-text">Created: {{currentMarket.create_time | date: 'short'}}</p>
-    <p class="card-text">Ending: {{currentMarket.end_time | date: 'short'}}</p>
+    <!-- <p class="card-text">Ending: {{currentMarket.end_time | date: 'short'}}</p> -->
+    <p class="card-text" routerLink="/group/{{currentMarket.group_name}}">Group: <span class="text-primary">{{currentMarket.group_name}}</span></p>
     <p class="card-text">Description: {{currentMarket.market_descriptor}}</p>
   </div>
   <br>
@@ -26,10 +27,10 @@
     <form>
       <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
         <label class="btn btn-outline-dark" [class.active]="bidask" active>
-          <input type="radio" name="bid" [value]="true" autocomplete="off" [(ngModel)]="bidask"> Bid
+          <input type="radio" name="bid" [value]="true" autocomplete="off" [(ngModel)]="bidask" (click)="toggleBidAsk(true)"> Bid
         </label>
         <label class="btn btn-outline-dark" [class.active]="!bidask">
-          <input type="radio" name="ask" [value]="false" autocomplete="off" [(ngModel)]="bidask"> Ask
+          <input type="radio" name="ask" [value]="false" autocomplete="off" [(ngModel)]="bidask" (click)="toggleBidAsk(false)"> Ask
         </label>
       </div>
       <div class="form-group">

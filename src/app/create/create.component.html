@@ -10,9 +10,10 @@
       <div class="input-group-prepend">
         <label class="input-group-text" for="group-select">Group</label>
       </div>
-      <select class="custom-select" id="group-select" [(ngModel)]="groupName" name="group">
-        <option selected disabled>Choose a group</option>
-        <option value="test">Test</option>
+      <select class="custom-select" [(ngModel)]="newMarket.group" name="group">
+        <option *ngIf="!newMarket.group" selected>Choose a group</option>
+        <option *ngIf="newMarket.group" disabled>Choose a group</option>
+        <option *ngFor="let group of groups">{{group}}</option>
       </select>
     </div>
     <!-- <div class="form-group">
