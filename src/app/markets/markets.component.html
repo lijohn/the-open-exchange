@@ -14,7 +14,7 @@
     <tbody>
       <tr *ngFor="let market of markets" routerLink="/markets/{{market.security_id}}">
         <th scope="row">{{market.market_name}}</th>
-        <td>{{market.group}}</td>
+        <td>{{market.group_name}}</td>
         <td>{{market.last_traded | currency}}</td>
         <td>{{market.best_bid | currency}} - {{market.best_ask | currency}}</td>
         <!-- <td>{{market.create_time | date: 'short'}}</td>
