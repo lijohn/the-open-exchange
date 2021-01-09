@@ -1,0 +1,8 @@
+li:hover {
+  color: gray;
+}
+
+.list-group-item:hover {
+  background-color: gainsboro;
+  cursor: pointer;
+}

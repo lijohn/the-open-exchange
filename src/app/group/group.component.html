@@ -1,1 +1,8 @@
-<p>group works!</p>
+<div *ngIf="group" class="container">
+  <ul class="list-group">
+    <li *ngFor="let user of group.users" class="list-group-item d-flex justify-content-between align-items-center">
+      {{user}}
+      <span *ngIf="isAdmin(user)" class="badge badge-primary badge-pill">Admin</span>
+    </li>
+  </ul>
+</div>

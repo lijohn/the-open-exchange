@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MarketsService } from '../markets.service';
 import { Router } from '@angular/router';
 import { UsersService } from '../users.service';
+import { Group } from '../group';
 
 @Component({
   selector: 'app-create',
@@ -16,7 +17,7 @@ export class CreateComponent implements OnInit {
     end: null
   };
 
-  groups: any[] = [];
+  groups: Group;
   error: boolean = false;
 
   constructor(private market:MarketsService, private router:Router, private user: UsersService) { }

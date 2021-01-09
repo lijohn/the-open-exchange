@@ -13,18 +13,10 @@
   <button type="button" class="btn btn-outline-danger" (click)="deleteExposure()">Delete All Exposure</button>
 </div>
 <div *ngIf="user" class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Groups</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let group of user.list_of_groups">
-        <!-- TODO: make sure the group name doesn't have special characters, spaces are replaced -->
-        <!-- OR JUST HASH IT -->
-        <td routerLink="/group/{{group}}">{{group}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <h3><strong>Groups</strong></h3>
+  <ul class="list-group">
+    <li *ngFor="let group of user.list_of_groups" class="list-group-item" routerLink="/group/{{group.id}}">
+      {{group.name}}
+    </li>
+  </ul>
 </div>
