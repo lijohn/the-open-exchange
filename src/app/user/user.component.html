@@ -14,9 +14,17 @@
 </div>
 <div *ngIf="user" class="container">
   <h3><strong>Groups</strong></h3>
+  <p *ngIf="user.list_of_groups.length == 0">Looks like you're not in any groups yet.</p>
   <ul class="list-group">
     <li *ngFor="let group of user.list_of_groups" class="list-group-item" routerLink="/group/{{group.id}}">
       {{group.name}}
     </li>
   </ul>
+  <br *ngIf="user.list_of_groups.length > 0">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="New group name" [(ngModel)]="newGroup" name="name">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="submit" (click)="createGroup()">Create Group</button>
+    </div>
+  </div>
 </div>

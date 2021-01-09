@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
+import { GroupsService } from '../groups.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -8,8 +10,13 @@ import { UsersService } from '../users.service';
 })
 export class UserComponent implements OnInit {
   user: any;
+  newGroup: string;
 
-  constructor(private userService: UsersService) { }
+  constructor(
+    private userService: UsersService,
+    private groupsService: GroupsService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.userService.getUserInfo().subscribe(result => {
@@ -22,4 +29,8 @@ export class UserComponent implements OnInit {
     this.userService.deleteExposure().subscribe(() => this.ngOnInit());
   }
 
+  createGroup(){
+    this.groupsService.createGroup(this.userService.getUser(), this.newGroup, this.userService.getPin())
+      .subscribe(groupId => this.router.navigateByUrl(`/group/${groupId}`));
+  }
 }

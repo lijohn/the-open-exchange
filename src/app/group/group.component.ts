@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Group } from '../group';
 import { GroupsService } from '../groups.service';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-group',
@@ -11,16 +12,20 @@ import { GroupsService } from '../groups.service';
 export class GroupComponent implements OnInit {
   groupId: number;
   group: Group = {
+    name: "",
     admins: [],
     users: []
   };
-  admin: string;
+  admin: boolean;
   members: string[] = [];
   newMember: string;
+  error: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private groupsService: GroupsService
+    private groupsService: GroupsService,
+    private usersService: UsersService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -28,6 +33,7 @@ export class GroupComponent implements OnInit {
       this.groupId = +params.id;
       this.groupsService.getGroup(this.groupId).subscribe(group => {
         this.group = group;
+        this.admin = this.isAdmin(this.usersService.getUser());
       });
     });
   }
@@ -39,5 +45,19 @@ export class GroupComponent implements OnInit {
     return false;
   }
 
+  addUser(): void {
+    this.groupsService.addUser(
+      this.usersService.getUser(), this.usersService.getPin(),
+      this.groupId, this.newMember
+    ).subscribe(result => {
+      if (result == false) this.error = true;
+      else location.reload();
+    });
+  }
 
+  leaveGroup(): void {
+    this.groupsService.deleteUser(
+      this.usersService.getUser(), this.usersService.getPin(), this.groupId
+    ).subscribe(() => this.router.navigateByUrl(`/users/${this.usersService.getUser()}`))
+  }
 }

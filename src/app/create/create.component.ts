@@ -17,7 +17,7 @@ export class CreateComponent implements OnInit {
     end: null
   };
 
-  groups: Group;
+  groups: Group[];
   error: boolean = false;
 
   constructor(private market:MarketsService, private router:Router, private user: UsersService) { }

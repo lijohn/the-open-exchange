@@ -1,5 +1,8 @@
-<div class="container">
-  <form>
+<div *ngIf="groups" class="container">
+  <p *ngIf="groups.length == 0">
+    Looks like you're not in any groups. Go to <a routerLink="/">your profile</a> to create one.
+  </p>
+  <form *ngIf="groups.length > 0">
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Name" [(ngModel)]="newMarket.name" name="name">
     </div>
