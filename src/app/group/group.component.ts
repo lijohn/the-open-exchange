@@ -39,10 +39,7 @@ export class GroupComponent implements OnInit {
   }
 
   isAdmin(user: string): boolean {
-    for (let admin of this.group.admins) {
-      if (admin === user) return true;
-    }
-    return false;
+    return this.groupsService.isAdmin(user, this.group);
   }
 
   addUser(): void {

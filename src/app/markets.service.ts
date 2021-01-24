@@ -40,12 +40,12 @@ export class MarketsService {
     return this.http.get<Market[]>(`${this.url}/closed`);
   }
 
-  castVote(id:number, user:any, vote:number): Observable<string> {
-    return this.http.post<string>(`${this.url}/vote/${id}`, { user: user.user, pin: user.pin, vote });
-  }
-
   getPayments(): Observable<any[]> {
     return this.http.get<any[]>(`${this.url}/payments`);
+  }
+
+  settle(id: number, user: string, pin: string, settle: number, group: number): Observable<string> {
+    return this.http.post<string>(`${this.url}/markets/${id}`, { user, pin, settle, group })
   }
 
 }

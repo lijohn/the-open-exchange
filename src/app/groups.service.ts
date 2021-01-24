@@ -26,4 +26,11 @@ export class GroupsService {
   getGroup(group:number):Observable<Group> {
     return this.http.get<Group>(`${this.url}/groups/${group}`);
   }
+
+  isAdmin(user: string, group: Group) {
+    for (let admin of group.admins) {
+      if (admin === user) return true;
+    }
+    return false;
+  }
 }

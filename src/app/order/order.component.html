@@ -12,16 +12,6 @@
     <p class="card-text">Description: {{currentMarket.market_descriptor}}</p>
   </div>
   <br>
-  <div *ngIf="currentMarket.in_settle">
-    <h3>Place Vote</h3>
-    <form>
-      <div class="form-group">
-        <input type="number" step="0.1" class="form-control" placeholder="Settle Value" [(ngModel)]="vote" name="vote">
-      </div>
-      <p style="color: darkred;">{{message}}</p>
-      <button type="submit" class="btn btn-outline-primary" (click)="castVote()">Cast Vote</button>
-    </form>
-  </div>
   <div *ngIf="!currentMarket.in_settle">
     <h3>Place Order</h3>
     <form>
@@ -43,5 +33,12 @@
       <button type="submit" class="btn btn-outline-primary" (click)="addOrder()">Place Order</button>
       <button type="button" class="btn btn-outline-danger" (click)="deleteExposure()">Delete Exposure</button>
     </form>
+  </div>
+  <br>
+  <div class="input-group mb-3" *ngIf="admin">
+    <input type="text" class="form-control" placeholder="Settle market value" [(ngModel)]="settle" name="settle">
+    <div class="input-group-append">
+      <button class="btn btn-outline-success" type="submit" (click)="settleMarket()">Settle Market</button>
+    </div>
   </div>
 </div>
