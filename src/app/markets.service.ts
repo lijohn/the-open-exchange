@@ -8,7 +8,7 @@ import { Order } from './order';
   providedIn: 'root'
 })
 export class MarketsService {
-  url:string = 'http://3.22.187.30'
+  url:string = 'http://0.0.0.0:80'
 
   constructor(private http: HttpClient) { }
 
@@ -36,8 +36,8 @@ export class MarketsService {
     return this.http.put<string>(`${this.url}/markets/${id}`, user);
   }
 
-  getAllClosed(): Observable<Market[]> {
-    return this.http.get<Market[]>(`${this.url}/closed`);
+  getAllClosed(user: string, pin: string): Observable<Market[]> {
+    return this.http.put<Market[]>(`${this.url}/closed`, { user, pin });
   }
 
   getPayments(): Observable<any[]> {

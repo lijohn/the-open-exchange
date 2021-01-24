@@ -7,7 +7,7 @@ import { Group } from './group';
   providedIn: 'root'
 })
 export class GroupsService {
-  url:string = 'http://3.22.187.30'
+  url:string = 'http://0.0.0.0:80'
 
   constructor(private http:HttpClient) { }
 

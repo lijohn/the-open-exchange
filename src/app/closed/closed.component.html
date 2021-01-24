@@ -4,17 +4,16 @@
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Settled</th>
-                <!-- <th scope="col">Created</th>
-                <th scope="col">Ended</th> -->
+                <th scope="col">Created</th>
+                <!-- <th scope="col">Ended</th> -->
                 <th scope="col">Description</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let market of markets" routerLink="/markets/{{market.security_id}}">
+            <tr *ngFor="let market of markets">
                 <th scope="row">{{market.market_name}}</th>
-                <td>{{market.last_traded | currency}}</td>
-                <!-- <td>{{market.create_time | date: 'short'}}</td>
-                <td>{{market.end_time | date: 'short'}}</td> -->
+                <td>{{market.settle | currency}}</td>
+                <td>{{market.create_time | date: 'shortDate'}}</td>
                 <td>{{market.market_descriptor}}</td>
             </tr>
         </tbody>
