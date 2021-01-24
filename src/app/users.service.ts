@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { BACKEND_URL } from './constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  url:string = 'http://0.0.0.0:80'
+  url:string = BACKEND_URL;
 
   constructor(private http: HttpClient, private cookies: CookieService) { }
 

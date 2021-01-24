@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Market } from './market';
 import { Order } from './order';
+import { BACKEND_URL } from './constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarketsService {
-  url:string = 'http://0.0.0.0:80'
+  url:string = BACKEND_URL;
 
   constructor(private http: HttpClient) { }
 

@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Group } from './group';
+import { BACKEND_URL } from './constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GroupsService {
-  url:string = 'http://0.0.0.0:80'
+  url:string = BACKEND_URL;
 
   constructor(private http:HttpClient) { }
 
