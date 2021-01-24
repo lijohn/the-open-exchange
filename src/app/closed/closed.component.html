@@ -1,5 +1,5 @@
-<div class="container">
-    <table class="table">
+<div *ngIf="markets" class="container">
+    <table *ngIf="markets.length > 0" class="table">
         <thead>
             <tr>
                 <th scope="col">Name</th>
@@ -18,4 +18,7 @@
             </tr>
         </tbody>
     </table>
+    <p *ngIf="markets.length == 0">
+      Looks like no markets have settled yet. Click here for all <a routerLink="/markets">active markets</a>.
+    </p>
 </div>

@@ -1,7 +1,7 @@
 <div *ngIf="user" class="container">
   <h3><strong>Name: </strong>{{user.user}}</h3>
-  <h3><strong>Cash: </strong>{{user.cash}}</h3>
-  <h3><strong>PnL: </strong>{{user.pnl}}</h3> 
+  <h3><strong>Cash: </strong>{{user.cash | currency}}</h3>
+  <h3><strong>PnL: </strong>{{user.pnl | currency}}</h3> 
   <h3><strong>Positions</strong></h3>
   <div *ngIf="user.list_of_positions.length > 0">
     <p *ngFor="let position of user.list_of_positions">{{position}}</p>

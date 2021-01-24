@@ -1,5 +1,5 @@
-<div class="container">
-  <table class="table">
+<div *ngIf="payments" class="container">
+  <table *ngIf="payments.length > 0" class="table">
     <thead>
       <tr>
         <th scope="col">Payer</th>
@@ -23,4 +23,7 @@
       </tr>
     </tbody>
   </table>
+  <p *ngIf="payments.length == 0">
+    Looks like no markets have settled yet. Click here for all <a routerLink="/markets">active markets</a>.
+  </p>
 </div>
