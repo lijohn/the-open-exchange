@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MarketsService } from '../markets.service';
 import { Router } from '@angular/router';
 import { UsersService } from '../users.service';
-import { Group } from '../group';
+import { Group } from '../models/group';
 
 @Component({
   selector: 'app-create',
@@ -23,7 +23,7 @@ export class CreateComponent implements OnInit {
   constructor(private market:MarketsService, private router:Router, private user: UsersService) { }
 
   ngOnInit() {
-    this.user.getUserInfo().subscribe(result => this.groups = result.list_of_groups)
+    this.user.getUserInfo().subscribe(result => this.groups = result.groups)
   }
 
   createMarket() {

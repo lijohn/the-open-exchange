@@ -1,3 +1,11 @@
 nav {
   background-color: lightgray;
 }
+
+a {
+  color: darkslategray;
+}
+
+a:hover {
+  color: gray;
+}

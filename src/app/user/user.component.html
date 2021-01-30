@@ -1,26 +1,69 @@
 <div *ngIf="user" class="container">
-  <h3><strong>Name: </strong>{{user.user}}</h3>
-  <h3><strong>Cash: </strong>{{user.cash | currency}}</h3>
-  <h3><strong>PnL: </strong>{{user.pnl | currency}}</h3> 
+  <h1>{{ user.name }}</h1>
+  <h3 style="margin-top: 3%;"><strong>PnL </strong>{{user.pnl | currency}}</h3>
+  <h5><strong>Cash </strong>{{user.cash | currency}}</h5>
+  <br>
   <h3><strong>Positions</strong></h3>
-  <div *ngIf="user.list_of_positions.length > 0">
-    <p *ngFor="let position of user.list_of_positions">{{position}}</p>
-  </div>
+  <ul *ngIf="user.positions" class="list-group">
+    <li *ngFor="let position of user.positions"
+      class="list-group-item list-group-item-action flex-column align-items-start"
+      routerLink="/markets/{{position.security_id}}">
+      <h5 class="mb-1">{{ position.market_name }}</h5>
+      <p class="mb-0">{{ position.position }} contracts at {{ position.price | currency }}</p>
+      <small>
+        Last traded: {{ position.last_traded | currency }} ({{position.best_bid | currency}} - {{position.best_ask | currency}})
+      </small>
+    </li>
+  </ul>
+  <p *ngIf="!user.positions || user.positions.length == 0">No current positions</p>
+  <br>
   <h3><strong>Bids</strong></h3>
-  <p *ngFor="let bid of user.list_of_bids">{{bid}}</p>
+  <ul *ngIf="user.bids" class="list-group">
+    <li *ngFor="let bid of user.bids"
+      class="list-group-item list-group-item-action flex-column align-items-start"
+      routerLink="/markets/{{bid.security_id}}">
+      <h5 class="mb-1">{{ bid.market_name }}</h5>
+      <p class="mb-0">Your bid: {{ bid.volume }} contracts at {{ bid.price | currency }}</p>
+      <small *ngIf="bid.price != bid.best_bid" class="mb-0 text-muted">
+        Best bid: {{ bid.best_bid_volume }} contracts at {{ bid.best_bid | currency }}
+      </small>
+      <small *ngIf="bid.price == bid.best_bid" class="mb-0 text-muted">
+        Your bid is currently the best bid
+      </small>
+    </li>
+  </ul>
+  <p *ngIf="!user.bids || user.bids.length == 0">No current bids</p>
+  <br>
   <h3><strong>Asks</strong></h3>
-  <p *ngFor="let ask of user.list_of_asks">{{ask}}</p>
+  <ul *ngIf="user.asks" class="list-group">
+    <li *ngFor="let ask of user.asks"
+      class="list-group-item list-group-item-action flex-column align-items-start"
+      routerLink="/markets/{{ask.security_id}}">
+      <h5 class="mb-1">{{ ask.market_name }}</h5>
+      <p class="mb-0">Your ask: {{ ask.volume }} contracts at {{ ask.price | currency }}</p>
+      <small *ngIf="ask.price != ask.best_ask" class="mb-0 text-muted">
+        Best ask: {{ ask.best_ask_volume }} contracts at {{ ask.best_ask | currency }}
+      </small>
+      <small *ngIf="ask.price == ask.best_ask" class="mb-0 text-muted">
+        Your ask is currently the best ask
+      </small>
+    </li>
+  </ul>
+  <p *ngIf="!user.asks || user.asks.length == 0">No current asks</p>
+  <br>
   <button type="button" class="btn btn-outline-danger" (click)="deleteExposure()">Delete All Exposure</button>
 </div>
-<div *ngIf="user" class="container">
+<div *ngIf="user.groups" class="container">
   <h3><strong>Groups</strong></h3>
-  <p *ngIf="user.list_of_groups.length == 0">Looks like you're not in any groups yet.</p>
+  <p *ngIf="user.groups.length == 0">Looks like you're not in any groups yet.</p>
   <ul class="list-group">
-    <li *ngFor="let group of user.list_of_groups" class="list-group-item" routerLink="/group/{{group.id}}">
+    <li *ngFor="let group of user.groups"
+      class="list-group-item list-group-item-action"
+      routerLink="/group/{{group.id}}">
       {{group.name}}
     </li>
   </ul>
-  <br *ngIf="user.list_of_groups.length > 0">
+  <br *ngIf="user.groups.length > 0">
   <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="New group name" [(ngModel)]="newGroup" name="name">
     <div class="input-group-append">

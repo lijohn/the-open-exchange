@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import { BACKEND_URL } from './constants';
+import { BACKEND_URL } from './models/constants';
 
 @Injectable({
   providedIn: 'root'

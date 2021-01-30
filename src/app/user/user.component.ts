@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../users.service';
 import { GroupsService } from '../groups.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-user',
@@ -9,20 +10,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  user: any;
+  user: User = new User;
   newGroup: string;
 
   constructor(
     private userService: UsersService,
     private groupsService: GroupsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.userService.getUserInfo().subscribe(result => {
-      this.user = result;
-      if (this.user.list_of_positions.length == 0) this.user.list_of_positions.push('No outstanding positions');
-    });
+    this.route.params.subscribe(params => {
+      this.userService.getUserInfo().subscribe(result => {
+        this.user = result;
+        this.user.name = params.user;
+      });
+    })
   }
 
   deleteExposure() {

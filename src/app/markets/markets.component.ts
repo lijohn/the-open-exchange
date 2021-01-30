@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MarketsService } from '../markets.service';
-import { Market } from '../market';
+import { Market } from '../models/market';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -15,13 +15,7 @@ export class MarketsComponent implements OnInit {
 
   ngOnInit() {
     this.market.getAllMarkets(this.user.getUser(), this.user.getPin())
-      .subscribe(result => {
-      // for (let market of result) {
-      //   market.create_time = market.create_time.replace(' ', 'T');
-      //   market.end_time = market.end_time.replace(' ', 'T');
-      // }
-      this.markets = result;
-    });
+      .subscribe(result => this.markets = result);
   }
 
 }

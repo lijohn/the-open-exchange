@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MarketsService } from '../markets.service';
-import { Market } from '../market';
-import { Order } from '../order';
+import { Market } from '../models/market';
+import { Order } from '../models/order';
 import { UsersService } from '../users.service';
 import { GroupsService } from '../groups.service';
 

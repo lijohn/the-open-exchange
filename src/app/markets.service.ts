@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Market } from './market';
-import { Order } from './order';
-import { BACKEND_URL } from './constants';
+import { Market } from './models/market';
+import { Order } from './models/order';
+import { BACKEND_URL } from './models/constants';
 
 @Injectable({
   providedIn: 'root'
