@@ -1,16 +1,21 @@
 <div class="container">
-  <div class="card card-body">
-    <h4 class="card-title">{{currentMarket.market_name}}</h4>
-    <h5 class="card-subtitle mb-2 text-muted">{{currentMarket.last_traded | currency}}</h5>
-    <p *ngIf="!currentMarket.in_settle && currentMarket.best_bid" class="card-text">Bid: {{currentMarket.best_bid | currency}} ({{currentMarket.best_bid_volume}} contracts)</p>
-    <p *ngIf="!currentMarket.in_settle && !currentMarket.best_bid">Bid: none</p>
-    <p *ngIf="!currentMarket.in_settle && currentMarket.best_ask" class="card-text">Ask: {{currentMarket.best_ask | currency}} ({{currentMarket.best_ask_volume}} contracts)</p>
-    <p *ngIf="!currentMarket.in_settle && !currentMarket.best_ask">Ask: none</p>
-    <p class="card-text">Created: {{currentMarket.create_time | date: 'short'}}</p>
-    <!-- <p class="card-text">Ending: {{currentMarket.end_time | date: 'short'}}</p> -->
-    <p class="card-text" routerLink="/group/{{currentMarket.group_id}}">Group: <span class="text-primary">{{currentMarket.group_name}}</span></p>
-    <p class="card-text">Description: {{currentMarket.market_descriptor}}</p>
-  </div>
+  <h1 class="card-title">{{currentMarket.market_name}}</h1>
+  <h3 class="card-subtitle mb-3 mt-2 text-muted">{{currentMarket.last_traded | currency}}</h3>
+  <ul class="list-group">
+    <li class="list-group-item" *ngIf="!currentMarket.in_settle && currentMarket.best_bid">
+      Bid: {{currentMarket.best_bid | currency}} ({{currentMarket.best_bid_volume}} contracts)
+    </li>
+    <li class="list-group-item" *ngIf="!currentMarket.in_settle && !currentMarket.best_bid">Bid: none</li>
+    <li class="list-group-item" *ngIf="!currentMarket.in_settle && currentMarket.best_ask">
+      Ask: {{currentMarket.best_ask | currency}} ({{currentMarket.best_ask_volume}} contracts)
+    </li>
+    <li class="list-group-item" *ngIf="!currentMarket.in_settle && !currentMarket.best_ask">Ask: none</li>
+    <li class="list-group-item">Created: {{currentMarket.create_time | date: 'short'}}</li>
+    <li class="list-group-item list-group-item-action" routerLink="/group/{{currentMarket.group_id}}">
+      Group: {{currentMarket.group_name}}
+    </li>
+    <li class="list-group-item">Description: {{currentMarket.market_descriptor}}</li>
+  </ul>
   <br>
   <div *ngIf="!currentMarket.in_settle">
     <h3>Place Order</h3>
@@ -41,4 +46,5 @@
       <button class="btn btn-outline-success" type="submit" (click)="settleMarket()">Settle Market</button>
     </div>
   </div>
+  <br>
 </div>

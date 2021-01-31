@@ -1,29 +1,21 @@
 <div *ngIf="payments" class="container">
-  <table *ngIf="payments.length > 0" class="table">
-    <thead>
-      <tr>
-        <th scope="col">Payer</th>
-        <th scope="col">Receiver</th>
-        <th scope="col">Market</th>
-        <!-- <th scope="col">Description</th> -->
-        <th scope="col">Settle</th>
-        <th scope="col">Amount</th>
-        <!-- <th scope="col">Time</th> -->
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let payment of payments">
-        <td>{{payment.payer}}</td>
-        <td>{{payment.receiver}}</td>
-        <td>{{payment.market}}</td>
-        <!-- <td>{{payment.market_description}}</td> -->
-        <td>{{payment.settle | currency}}</td>
-        <td>{{payment.amount | currency}}</td>
-        <!-- <td>{{payment.time | date: 'short'}}</td> -->
-      </tr>
-    </tbody>
-  </table>
+  <h1 class="mb-3">Payments</h1>
+  <ul class="list-group" *ngIf="payments.length > 0">
+      <li class="list-group-item" *ngFor="let payment of payments">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h5>{{payment.payer}} → {{payment.receiver}}</h5>
+            <h6><em>{{payment.market}}</em> closed at {{payment.settle | currency}}</h6>
+          </div>
+          <div>
+            <h1>{{payment.amount | currency}}</h1>
+          </div>
+        </div>
+      </li>
+  </ul>
   <p *ngIf="payments.length == 0">
     Looks like no markets have settled yet. Click here for all <a routerLink="/markets">active markets</a>.
   </p>
+  <button type="button" class="mt-3 mb-5 btn btn-outline-dark" (click)="signOut()">Sign out</button>
+  <br>
 </div>

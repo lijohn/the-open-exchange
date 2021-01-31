@@ -17,7 +17,6 @@ export class ClosedComponent implements OnInit {
       .subscribe(result => {
         for (let market of result) {
           market.create_time = market.create_time.replace(' ', 'T');
-          // market.end_time = market.end_time.replace(' ', 'T');
         }
         this.markets = result;
       });

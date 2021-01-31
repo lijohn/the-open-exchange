@@ -1,24 +1,21 @@
 <div *ngIf="markets" class="container">
-    <table *ngIf="markets.length > 0" class="table">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Settled</th>
-                <th scope="col">Created</th>
-                <!-- <th scope="col">Ended</th> -->
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let market of markets">
-                <th scope="row">{{market.market_name}}</th>
-                <td>{{market.settle | currency}}</td>
-                <td>{{market.create_time | date: 'shortDate'}}</td>
-                <td>{{market.market_descriptor}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <p *ngIf="markets.length == 0">
-      Looks like no markets have settled yet. Click here for all <a routerLink="/markets">active markets</a>.
-    </p>
+  <ul *ngIf="markets.length > 0" class="list-group">
+    <li *ngFor="let market of markets" class="list-group-item">
+      <h4>{{market.market_name}}</h4>
+      <div class="d-flex justify-content-between">
+        <div>
+          <h5>{{market.group_name}}</h5>
+          <div class="text-muted">{{market.create_time | date: 'shortDate'}}</div>
+          <small class="text-muted">{{market.market_descriptor}}</small>
+        </div>
+        <div>
+          <h1>{{market.settle | currency}}</h1>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <p *ngIf="markets.length == 0">
+    Looks like no markets have settled yet. Click here for all <a routerLink="/markets">active markets</a>.
+  </p>
+  <br>
 </div>

@@ -15,7 +15,12 @@ export class MarketsComponent implements OnInit {
 
   ngOnInit() {
     this.market.getAllMarkets(this.user.getUser(), this.user.getPin())
-      .subscribe(result => this.markets = result);
+      .subscribe(result => {
+        for (let market of result) {
+          market.create_time = market.create_time.replace(' ', 'T');
+        }
+        this.markets = result;
+      });
   }
 
 }

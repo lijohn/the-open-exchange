@@ -1,29 +1,42 @@
 <div *ngIf="markets" class="container">
-  <table *ngIf="markets.length > 0" class="table">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Group</th>
-        <th scope="col">Last Traded</th>
-        <th scope="col">Bid - Ask</th>
-        <!-- <th scope="col">Created</th>
-        <th scope="col">Ending</th> -->
-        <th scope="col">Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let market of markets" routerLink="/markets/{{market.security_id}}">
-        <th scope="row">{{market.market_name}}</th>
-        <td>{{market.group_name}}</td>
-        <td>{{market.last_traded | currency}}</td>
-        <td>{{market.best_bid | currency}} - {{market.best_ask | currency}}</td>
-        <!-- <td>{{market.create_time | date: 'short'}}</td>
-        <td>{{market.end_time | date: 'short'}}</td> -->
-        <td>{{market.market_descriptor}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <p *ngIf="markets.length == 0">
-    Looks like there aren't any markets yet. <a routerLink="/create">Click here</a> to create one.
-  </p>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action" routerLink="/create">
+      <h5 class="mt-1"><strong>Create market</strong></h5>
+    </li>
+    <li class="list-group-item list-group-item-action" routerLink="/closed">
+      <h5 class="mt-1"><strong>Closed markets</strong></h5>
+    </li>
+  </ul>
+  <br>
+  <ul class="list-group">
+    <li *ngFor="let market of markets" class="list-group-item list-group-item-action" routerLink="/markets/{{market.security_id}}">
+        <h4 class="mb-1">{{market.market_name}}</h4>
+        <div class="d-flex justify-content-between">
+          <div class="mt-2">
+            <h5>{{market.group_name}}</h5>
+            <div class="text-muted">{{market.create_time | date: 'shortDate'}}</div>
+            <small class="mt-1 d-inline-block text-truncate text-muted" style="max-width: 200px;">
+              {{market.market_descriptor}}
+            </small>
+          </div>
+          <div class="d-flex align-items-center flex-column">
+            <h1 *ngIf="market.last_traded">{{market.last_traded | currency}}</h1>
+            <h1 *ngIf="!market.last_traded">None</h1>
+            <p *ngIf="market.best_bid && market.best_ask" class="text-muted">
+              {{market.best_bid | currency}} - {{market.best_ask | currency}}
+            </p>
+            <p *ngIf="market.best_bid && !market.best_ask" class="text-muted">
+              {{market.best_bid | currency}} - No asks
+            </p>
+            <p *ngIf="!market.best_bid && market.best_ask" class="text-muted">
+              No bids - {{market.best_ask | currency}}
+            </p>
+            <p *ngIf="!market.best_bid && !market.best_ask" class="text-muted">
+              No orders
+            </p>
+          </div>
+        </div>
+      </li>
+  </ul>
+  <br>
 </div>

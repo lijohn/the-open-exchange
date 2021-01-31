@@ -31,10 +31,14 @@ export class GroupComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.groupId = +params.id;
-      this.groupsService.getGroup(this.groupId).subscribe(group => {
-        this.group = group;
-        this.admin = this.isAdmin(this.usersService.getUser());
-      });
+      this.getGroup();
+    });
+  }
+
+  getGroup() {
+    this.groupsService.getGroup(this.groupId).subscribe(group => {
+      this.group = group;
+      this.admin = this.isAdmin(this.usersService.getUser());
     });
   }
 
@@ -48,7 +52,7 @@ export class GroupComponent implements OnInit {
       this.groupId, this.newMember
     ).subscribe(result => {
       if (result == false) this.error = true;
-      else location.reload();
+      else this.getGroup();
     });
   }
 

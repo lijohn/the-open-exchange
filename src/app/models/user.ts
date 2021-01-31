@@ -1,8 +1,8 @@
 export class User {
   name: string;
-  positions: object[];
-  bids: object[];
-  asks: object[];
+  positions: any[];
+  bids: any[];
+  asks: any[];
   pnl: number;
   cash: number;
 }

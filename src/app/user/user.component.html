@@ -1,23 +1,31 @@
 <div *ngIf="user" class="container">
   <h1>{{ user.name }}</h1>
-  <h3 style="margin-top: 3%;"><strong>PnL </strong>{{user.pnl | currency}}</h3>
+  <h3 class="mt-3"><strong>PnL </strong>{{user.pnl | currency}}</h3>
   <h5><strong>Cash </strong>{{user.cash | currency}}</h5>
-  <br>
-  <h3><strong>Positions</strong></h3>
+  <h3 class="mt-3">Positions</h3>
   <ul *ngIf="user.positions" class="list-group">
     <li *ngFor="let position of user.positions"
       class="list-group-item list-group-item-action flex-column align-items-start"
       routerLink="/markets/{{position.security_id}}">
       <h5 class="mb-1">{{ position.market_name }}</h5>
-      <p class="mb-0">{{ position.position }} contracts at {{ position.price | currency }}</p>
-      <small>
+      <p class="mb-0">{{ position.position }} contracts at {{ position.average_price | currency }}</p>
+      <small *ngIf="position.best_bid && position.best_ask">
         Last traded: {{ position.last_traded | currency }} ({{position.best_bid | currency}} - {{position.best_ask | currency}})
+      </small>
+      <small *ngIf="position.best_bid && !position.best_ask">
+        Last traded: {{ position.last_traded | currency }} ({{position.best_bid | currency}} - No asks)
+      </small>
+      <small *ngIf="!position.best_bid && position.best_ask">
+        Last traded: {{ position.last_traded | currency }} (No bids - {{position.best_ask | currency}})
+      </small>
+      <small *ngIf="!position.best_bid && !position.best_ask">
+        Last traded: {{ position.last_traded | currency }} (No bids or asks)
       </small>
     </li>
   </ul>
   <p *ngIf="!user.positions || user.positions.length == 0">No current positions</p>
   <br>
-  <h3><strong>Bids</strong></h3>
+  <h3>Bids</h3>
   <ul *ngIf="user.bids" class="list-group">
     <li *ngFor="let bid of user.bids"
       class="list-group-item list-group-item-action flex-column align-items-start"
@@ -34,7 +42,7 @@
   </ul>
   <p *ngIf="!user.bids || user.bids.length == 0">No current bids</p>
   <br>
-  <h3><strong>Asks</strong></h3>
+  <h3>Asks</h3>
   <ul *ngIf="user.asks" class="list-group">
     <li *ngFor="let ask of user.asks"
       class="list-group-item list-group-item-action flex-column align-items-start"
@@ -54,7 +62,7 @@
   <button type="button" class="btn btn-outline-danger" (click)="deleteExposure()">Delete All Exposure</button>
 </div>
 <div *ngIf="user.groups" class="container">
-  <h3><strong>Groups</strong></h3>
+  <h2>Groups</h2>
   <p *ngIf="user.groups.length == 0">Looks like you're not in any groups yet.</p>
   <ul class="list-group">
     <li *ngFor="let group of user.groups"
@@ -70,4 +78,5 @@
       <button class="btn btn-outline-secondary" type="submit" (click)="createGroup()">Create Group</button>
     </div>
   </div>
+  <br>
 </div>

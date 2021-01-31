@@ -6,3 +6,7 @@
 .text-primary {
   cursor: pointer;
 }
+
+.list-group-item-action:hover {
+  cursor: pointer;
+}
