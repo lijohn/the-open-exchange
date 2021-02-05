@@ -1,4 +1,9 @@
-<div *ngIf="user" class="container">
+<div *ngIf="!user.name" class="text-center">
+  <div class="spinner-border text-secondary mt-5" role="status" style="width: 10rem; height: 10rem;">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div *ngIf="user.name" class="container">
   <h1>{{ user.name }}</h1>
   <h3 class="mt-3"><strong>PnL </strong>{{user.pnl | currency}}</h3>
   <h5><strong>Cash </strong>{{user.cash | currency}}</h5>
@@ -31,7 +36,7 @@
       class="list-group-item list-group-item-action flex-column align-items-start"
       routerLink="/markets/{{bid.security_id}}">
       <h5 class="mb-1">{{ bid.market_name }}</h5>
-      <p class="mb-0">Your bid: {{ bid.volume }} contracts at {{ bid.price | currency }}</p>
+      <p class="mb-0">{{ bid.volume }} contracts at {{ bid.price | currency }}</p>
       <small *ngIf="bid.price != bid.best_bid" class="mb-0 text-muted">
         Best bid: {{ bid.best_bid_volume }} contracts at {{ bid.best_bid | currency }}
       </small>
@@ -48,7 +53,7 @@
       class="list-group-item list-group-item-action flex-column align-items-start"
       routerLink="/markets/{{ask.security_id}}">
       <h5 class="mb-1">{{ ask.market_name }}</h5>
-      <p class="mb-0">Your ask: {{ ask.volume }} contracts at {{ ask.price | currency }}</p>
+      <p class="mb-0">{{ ask.volume }} contracts at {{ ask.price | currency }}</p>
       <small *ngIf="ask.price != ask.best_ask" class="mb-0 text-muted">
         Best ask: {{ ask.best_ask_volume }} contracts at {{ ask.best_ask | currency }}
       </small>
