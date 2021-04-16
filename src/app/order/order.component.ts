@@ -18,6 +18,8 @@ export class OrderComponent implements OnInit {
   message: string;
   settle: number;
   admin: boolean;
+  marketPrice: number;
+  marketVolume: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,17 +40,23 @@ export class OrderComponent implements OnInit {
 
   toggleBidAsk(value: boolean): void {
     this.bidask = value;
+    this.getMarketData();
   }
 
   getMarketData(): void {
     this.market.getMarket(this.order.security).subscribe(result => {
       this.currentMarket = result;
       this.currentMarket.create_time = this.currentMarket.create_time.replace(' ', 'T');
-      // this.currentMarket.end_time = this.currentMarket.end_time.replace(' ', 'T');
       this.order.group = result.group_id;
       this.groupsService.getGroup(result.group_id).subscribe(group => {
         this.admin = this.groupsService.isAdmin(this.userService.getUser(), group);
       })
+
+      // set market values as initial placeholder
+      this.marketPrice = this.bidask ? result.best_ask : result.best_bid;
+      this.marketVolume = this.bidask ? result.best_ask_volume : result.best_bid_volume;
+      this.order.price = this.marketPrice;
+      this.order.volume = this.marketVolume;
     });
   }
 

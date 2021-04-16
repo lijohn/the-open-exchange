@@ -12,6 +12,7 @@ import { User } from '../models/user';
 export class UserComponent implements OnInit {
   user: User = new User;
   newGroup: string;
+  message: string;
 
   constructor(
     private userService: UsersService,
@@ -35,6 +36,12 @@ export class UserComponent implements OnInit {
 
   createGroup(){
     this.groupsService.createGroup(this.userService.getUser(), this.newGroup, this.userService.getPin())
-      .subscribe(groupId => this.router.navigateByUrl(`/group/${groupId}`));
+      .subscribe(groupId => {
+        if (groupId == "Group Name Taken") {
+          this.message = groupId;
+        } else {
+          this.router.navigateByUrl(`/group/${groupId}`);
+        }
+      });
   }
 }

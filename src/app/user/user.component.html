@@ -5,8 +5,10 @@
 </div>
 <div *ngIf="user.name" class="container">
   <h1>{{ user.name }}</h1>
-  <h3 class="mt-3"><strong>PnL </strong>{{user.pnl | currency}}</h3>
-  <h5><strong>Cash </strong>{{user.cash | currency}}</h5>
+  <div class="card card-body mt-3">
+    <h4 class="card-title"><strong>PnL </strong>{{user.pnl | currency}}</h4>
+    <h6 class="card-text"><strong>Cash </strong>{{user.cash | currency}}</h6>
+  </div>
   <h3 class="mt-3">Positions</h3>
   <ul *ngIf="user.positions" class="list-group">
     <li *ngFor="let position of user.positions"
@@ -83,5 +85,6 @@
       <button class="btn btn-outline-secondary" type="submit" (click)="createGroup()">Create Group</button>
     </div>
   </div>
+  <p style="color: darkred;">{{message}}</p>
   <br>
 </div>

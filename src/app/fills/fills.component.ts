@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MarketsService } from '../markets.service';
 import { UsersService } from '../users.service';
 
@@ -12,22 +12,21 @@ export class FillsComponent implements OnInit {
   payments: any[];
 
   constructor(
-    private market: MarketsService, 
-    private user: UsersService,
-    private router: Router
+    private market: MarketsService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.market.getPayments().subscribe(result => {
-      for (let entry of result) entry.time = entry.time.replace(' ', 'T');
-      this.payments = result;
+      this.route.params.subscribe(params => {
+        let payments = [];
+        for (let entry of result) {
+          entry.time = entry.time.replace(' ', 'T');
+          if (entry.security_id == +params.id) payments.push(entry);
+        }
+        this.payments = payments;
+      });
     });
-  }
-
-  signOut() {
-    this.user.logOut();
-    this.router.navigateByUrl('/');
-    location.reload();
   }
 
 }

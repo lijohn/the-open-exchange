@@ -1,21 +1,21 @@
 <div *ngIf="payments" class="container">
-  <h1 class="mb-3">Payments</h1>
-  <ul class="list-group" *ngIf="payments.length > 0">
-      <li class="list-group-item" *ngFor="let payment of payments">
-        <div class="d-flex justify-content-between">
-          <div>
-            <h5>{{payment.payer}} → {{payment.receiver}}</h5>
-            <h6><em>{{payment.market}}</em> closed at {{payment.settle | currency}}</h6>
+  <div *ngIf="payments.length > 0">
+    <h2 class="card-title mb-4"><em>{{payments[0].market}}</em> closed at {{payments[0].settle | currency}}</h2>
+    <h5 class="mb-3">Payments</h5>
+    <ul class="list-group" *ngIf="payments.length > 0">
+        <li class="list-group-item" *ngFor="let payment of payments">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h4>{{payment.payer}} → {{payment.receiver}}</h4>
+            </div>
+            <div>
+              <h4>{{payment.amount | currency}}</h4>
+            </div>
           </div>
-          <div>
-            <h1>{{payment.amount | currency}}</h1>
-          </div>
-        </div>
-      </li>
-  </ul>
+        </li>
+    </ul>
+  </div>
   <p *ngIf="payments.length == 0">
-    Looks like no markets have settled yet. Click here for all <a routerLink="/markets">active markets</a>.
+    Looks like no trades were made before settling. Click <a routerLink="/closed">here for all closed markets</a>.
   </p>
-  <button type="button" class="mt-3 mb-5 btn btn-outline-dark" (click)="signOut()">Sign out</button>
-  <br>
 </div>

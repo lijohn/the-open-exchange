@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Market } from '../models/market';
 import { MarketsService } from '../markets.service';
 import { UsersService } from '../users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-closed',
@@ -10,7 +11,11 @@ import { UsersService } from '../users.service';
 })
 export class ClosedComponent implements OnInit {
   markets: Market[];
-  constructor(private market: MarketsService, private user: UsersService) { }
+  constructor(
+    private market: MarketsService,
+    private user: UsersService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.market.getAllClosed(this.user.getUser(), this.user.getPin())
@@ -20,6 +25,12 @@ export class ClosedComponent implements OnInit {
         }
         this.markets = result;
       });
+  }
+
+  signOut() {
+    this.user.logOut();
+    this.router.navigateByUrl('/');
+    location.reload();
   }
 
 }

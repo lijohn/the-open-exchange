@@ -12,7 +12,7 @@ export class GroupsService {
 
   constructor(private http:HttpClient) { }
 
-  createGroup(user:string, name:string, pin:string):Observable<number> {
+  createGroup(user:string, name:string, pin:string):Observable<any> {
     return this.http.post<number>(`${this.url}/groups`, { user, name, pin });
   }
 

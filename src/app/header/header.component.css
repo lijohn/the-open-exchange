@@ -2,6 +2,10 @@ nav {
   background-color: lightgray;
 }
 
+.sticky-top {
+  position: -webkit-sticky;
+}
+
 a {
   color: darkslategray;
 }

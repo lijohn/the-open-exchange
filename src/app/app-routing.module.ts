@@ -15,7 +15,7 @@ const routes: Routes = [
   {path: 'markets', component: MarketsComponent},
   {path: 'markets/:id', component: OrderComponent},
   {path: 'closed', component: ClosedComponent},
-  {path: 'payments', component: FillsComponent},
+  {path: 'payments/:id', component: FillsComponent},
   {path: 'users/:user', component: UserComponent},
   {path: 'group/:id', component: GroupComponent}
 ];
