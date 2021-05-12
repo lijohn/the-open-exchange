@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   user:string;
   pin:string;
-  error:boolean = false;
+  error:string;
 
   constructor(private userService:UsersService, private router:Router) { }
 
@@ -20,15 +20,18 @@ export class SignupComponent implements OnInit {
   }
 
   addUser() {
-    this.userService.createUser(this.user, this.pin).subscribe(() => {
-      this.userService.setCredentials(this.user, this.pin);
-      location.reload();
+    this.userService.createUser(this.user, this.pin).subscribe(result => {
+      if (result == "Username taken") this.error = result;
+      else {
+        this.userService.setCredentials(this.user, this.pin);
+        location.reload();
+      }
     });
   }
 
   login() {
     this.userService.verifyUser(this.user, this.pin).subscribe(result => {
-      if (!result) this.error = true;
+      if (!result) this.error = "Invalid Credentials";
       else {
         this.userService.setCredentials(this.user, this.pin);
         location.reload();

@@ -12,7 +12,7 @@ export class UsersService {
 
   constructor(private http: HttpClient, private cookies: CookieService) { }
 
-  createUser(user:string, pin:string): Observable<void> {
+  createUser(user:string, pin:string): Observable<any> {
     return this.http.post<void>(`${this.url}/users`, { user, pin })
   }
 
