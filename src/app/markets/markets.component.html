@@ -13,9 +13,7 @@
           <div style="margin-bottom: -2px;">
             <h6 style="margin-bottom: 3px;">{{market.group_name}}</h6>
             <div class="text-muted small">{{market.create_time | date: 'shortDate'}}</div>
-            <small class="d-inline-block text-truncate text-muted" style="max-width: 200px;">
-              {{market.market_descriptor}}
-            </small>
+            <div class="text-muted small">{{market.tags}}</div>
           </div>
           <div class="d-flex align-items-center flex-column">
             <h3 *ngIf="market.last_traded">{{market.last_traded | currency}}</h3>
@@ -34,6 +32,9 @@
             </p>
           </div>
         </div>
+        <small class="d-inline-block text-truncate text-muted" style="max-width: 250px; margin-bottom: -4px;">
+          {{market.market_descriptor}}
+        </small>
       </li>
   </ul>
   <br>

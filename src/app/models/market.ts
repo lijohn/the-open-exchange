@@ -12,4 +12,5 @@ export class Market {
   in_settle?: number;
   group_id: number;
   group_name: string;
+  tags?: any;
 }

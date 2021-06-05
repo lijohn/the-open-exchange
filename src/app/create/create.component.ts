@@ -14,8 +14,20 @@ export class CreateComponent implements OnInit {
     name: '',
     description: '',
     group: null,
-    end: null
+    end: null,
+    tags: []
   };
+
+  tags: any[] = [
+    { name: 'binary', selected: false },
+    { name: 'baseball', selected: false },
+    { name: 'soccer', selected: false },
+    { name: 'basketball', selected: false },
+    { name: 'tennis', selected: false },
+    { name: 'hockey', selected: false },
+    { name: 'movies', selected: false },
+    { name: 'other', selected: false },
+  ];
 
   groups: Group[];
   error: boolean = false;
@@ -24,6 +36,14 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
     this.user.getUserInfo().subscribe(result => this.groups = result.groups)
+  }
+
+  getTags() {
+    let tags: string[] = [];
+    for (let tag of this.tags) {
+      if (tag.selected) tags.push(tag.name);
+    }
+    return tags;
   }
 
   createMarket() {
@@ -41,6 +61,7 @@ export class CreateComponent implements OnInit {
       let end = new Date(this.newMarket.end);
       if (end <= current) this.newMarket.end = dateISO;
     }
+    this.newMarket.tags = this.getTags();
     this.market.createMarket(this.newMarket).subscribe(() => this.router.navigateByUrl('/markets'))
   }
 
