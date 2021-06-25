@@ -47,7 +47,8 @@ export class CreateComponent implements OnInit {
   }
 
   createMarket() {
-    if (this.newMarket.name == '' || this.newMarket.description == '' || this.newMarket.group == "Choose a group") {
+    if (this.newMarket.name == '' || this.newMarket.description == '' 
+        || this.newMarket.group == null || this.getTags().length == 0) {
       this.error = true;
       return;
     }

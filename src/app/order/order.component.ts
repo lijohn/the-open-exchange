@@ -61,13 +61,16 @@ export class OrderComponent implements OnInit {
   }
 
   addOrder(): void {
+    if (!this.validateInputs()) {
+      this.message = 'Invalid inputs';
+      this.clearInputs();
+      return;
+    }
     if (this.bidask) this.market.bid(this.order).subscribe(result => {
       if ((typeof result) == 'string') this.message = result;
       else {
         this.message = '';
-        this.order.price = null;
-        this.order.volume = null;
-        this.getMarketData();
+        this.clearInputs();
       }
     })
     else if (this.bidask === false) {
@@ -75,12 +78,27 @@ export class OrderComponent implements OnInit {
         if ((typeof result) == 'string') this.message = result;
         else {
           this.message = '';
-          this.order.price = null;
-          this.order.volume = null;
-          this.getMarketData();
+          this.clearInputs();
         }
       })
     }
+  }
+
+  validateInputs(): boolean {
+    if (this.isNumeric(this.order.price) && this.isNumeric(this.order.volume)
+        && this.order.volume > 0 && this.order.price > 0) {
+      if (this.currentMarket.tags.includes('binary') && this.order.price > 1) {
+          return false;
+      }
+      return true;
+    }
+    return false;
+  }
+
+  clearInputs(): void {
+    this.order.price = null;
+    this.order.volume = null;
+    this.getMarketData();
   }
 
   deleteExposure(): void {
@@ -92,11 +110,22 @@ export class OrderComponent implements OnInit {
   }
 
   settleMarket(): void {
+    if (!this.isNumeric(this.settle) || this.settle < 0
+        || (this.currentMarket.tags.includes('binary') && this.settle > 1)) {
+      this.message = 'Invalid input';
+      return;
+    }
     this.market.settle(this.order.security, this.order.user, this.order.pin, this.settle, this.currentMarket.group_id)
       .subscribe(result => {
         if (result != null) this.message = result;
         else this.router.navigateByUrl(`/closed`);
       })
+  }
+
+  isNumeric(input: any): boolean {
+    let inputString = String(input);
+    return !(new RegExp('[a-zA-Z+-]')).test(inputString)
+      && inputString.trim().length != 0 && !isNaN(Number(inputString));
   }
 
 }

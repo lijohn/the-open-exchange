@@ -15,8 +15,6 @@
         <label class="input-group-text" for="group-select"><strong style="color: gray;">Group</strong></label>
       </div>
       <select class="custom-select" [(ngModel)]="newMarket.group" name="group">
-        <option *ngIf="!newMarket.group" selected>Choose a group</option>
-        <option *ngIf="newMarket.group" disabled>Choose a group</option>
         <option *ngFor="let group of groups">{{group.name}}</option>
       </select>
     </div>
