@@ -4,7 +4,8 @@
   </div>
 </div>
 <div *ngIf="markets" class="container">
-  <button routerLink="/create" class="btn btn-outline-secondary btn-block" type="button">Add Market</button>
+  <button routerLink="/create" class="btn btn-outline-secondary btn-block mb-3" type="button">Add Market</button>
+  <input type="text" class="form-control" placeholder="Search by name, group, or tag" [(ngModel)]="query" (ngModelChange)="search()" name="search">
   <br>
   <ul class="list-group">
     <li *ngFor="let market of markets" class="list-group-item list-group-item-action" routerLink="/markets/{{market.security_id}}">

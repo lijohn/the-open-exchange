@@ -10,6 +10,8 @@ import { UsersService } from '../users.service';
 })
 export class MarketsComponent implements OnInit {
   markets:Market[];
+  marketsFull: Market[];
+  query: string;
 
   constructor(private market: MarketsService, private user: UsersService) { }
 
@@ -20,7 +22,16 @@ export class MarketsComponent implements OnInit {
           market.create_time = market.create_time.replace(' ', 'T');
         }
         this.markets = result;
+        this.marketsFull = this.markets;
       });
+  }
+
+  search() {
+    this.markets = this.marketsFull.filter(market => {
+      return market.market_name.includes(this.query)
+        || market.group_name.includes(this.query)
+        || String(market.tags).includes(this.query);
+    })
   }
 
 }
