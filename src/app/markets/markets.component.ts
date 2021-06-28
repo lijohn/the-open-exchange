@@ -28,9 +28,10 @@ export class MarketsComponent implements OnInit {
 
   search() {
     this.markets = this.marketsFull.filter(market => {
-      return market.market_name.includes(this.query)
-        || market.group_name.includes(this.query)
-        || String(market.tags).includes(this.query);
+      let query: string = this.query.toLowerCase();
+      return market.market_name.toLowerCase().includes(query)
+        || market.group_name.toLowerCase().includes(query)
+        || String(market.tags).includes(query);
     })
   }
 

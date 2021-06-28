@@ -5,7 +5,7 @@
       <input type="text" class="form-control" placeholder="Username" [(ngModel)]="user" name="user">
       <input type="password" class="form-control" placeholder="Password" [(ngModel)]="pin" name="pin">
     </div>
-    <p *ngIf="error" style="color: darkred;">Invalid Credentials</p>
+    <p *ngIf="error" style="color: darkred;">{{error}}</p>
     <button type="submit" class="btn btn-outline-dark" (click)="login()">Login</button>
     <button type="button" class="btn btn-outline-dark" (click)="addUser()">Create User</button>
   </form>
