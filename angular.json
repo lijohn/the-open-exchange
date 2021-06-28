@@ -22,7 +22,8 @@
             "crossOrigin": "use-credentials",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              { "glob": "about.html", "input": "src/assets/", "output": "/"}
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",

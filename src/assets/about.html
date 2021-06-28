@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<title>Fortuna Exchange</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/assets/img/stock.jpg");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="#home" class="w3-bar-item w3-button w3-wide">FORTUNA</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="/" class="w3-bar-item w3-button">LOGIN</a>
+      <a href="#about" class="w3-bar-item w3-button">ABOUT</a>
+      <!-- <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-user"></i> TEAM</a> -->
+      <a href="#transparency" class="w3-bar-item w3-button"><i></i>BET TRANSPARENCY</a>
+      <!-- <a href="#pricing" class="w3-bar-item w3-button"><i class="fa fa-usd"></i> PRICING</a> -->
+      <!-- <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a> -->
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <!-- <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">TEAM</a> -->
+  <a href="#transparency" onclick="w3_close()" class="w3-bar-item w3-button">BET TRANSPARENCY</a>
+  <!-- <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">PRICING</a> -->
+  <!-- <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a> -->
+</nav>
+
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <span class="w3-jumbo w3-hide-small">Fair betting markets for you</span><br>
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium">Fair betting markets for you</span><br>
+    <span class="w3-large">Create, trade, and settle private markets</span>
+    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn how Fortuna differs from other betting sites</a></p>
+  </div>
+  <!-- <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div> -->
+</header>
+
+<!-- About Section -->
+<div class="w3-container" style="padding:128px 16px" id="about">
+  <h3 class="w3-center">ABOUT FORTUNA</h3>
+  <p class="w3-center w3-large">What sets us apart</p>
+  <div class="w3-row-padding w3-center" style="margin-top:64px">
+    <div class="w3-quarter">
+      <i class="fa fa-users w3-margin-bottom w3-jumbo w3-center"></i>
+      <p class="w3-large">Groups</p>
+      <p>Create groups you'd like to interact with, and only trade amongst yourselves. You can imagine it as a private betting market that is only accessible to those you invite. We do not handle the settling of trades.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-usd w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Pricing</p>
+      <p>Fortuna attempts to find and publish the best prices for popular markets, and allows you to look for trades with prices that aren't possible through tradional betting sites or bookies.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-list w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Flexibility</p>
+      <p>Fortuna gives you the flexibility to list any type of market you want. Make up custom bets or stick to popular market templates. Choose the amount of money you are willing to risk.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-question w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Demystify</p>
+      <p>Forget confusing betting terms and payout structures - we've converted odds to transparent and easy-to-understand metrics. We are dedicated to educating all users.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Work Section -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="transparency">
+  <h3 class="w3-center">FORTUNA vs. OTHERS</h3>
+  <p class="w3-left w3-large">What you might see on other betting sites</p>
+  <div class="w3-container">
+    <table class="w3-table w3-striped w3-border">
+      <tr>
+        <th>TEAM</th>
+        <th>POINT SPREAD</th>
+        <th>TOTAL POINTS</th>
+        <th>MONEYLINE</th>
+      </tr>
+      <tr>
+        <td>Boston Celtics</td>
+        <td>-3 -112</td>
+        <td>O 230.5 -112</td>
+        <td>-140</td>
+      </tr>
+      <tr>
+        <td>Miami Heat</td>
+        <td>+3 -109</td>
+        <td>U 230.5 -110</td>
+        <td>+120</td>
+      </tr>
+    </table>
+  </div>
+  <p class="w3-left w3-large">Let's break this down, starting with the moneyline bet.<br><br>
+  What does -140 or +120 mean?<br>
+  -140 on the Celtics means that you must pay $140 to bet on the Celtics, and if they win, you win $100.<br>
+  +120 on the Heat means that you must pay $100 to bet on the Heat, and if they win, you win $120.<br><br>
+  Ok great. If you like to think in terms of probabilities like we do, we can turn these numbers into % chances to win.<br><br>
+
+  If you were to take the -140 price on the Celtics, you are saying you think the Celtics have >= 58.33% chance to win.<br>
+  If you were to take the +120 price on the Heat, you are saying you think the Celtics have <= 54.54% chance to win.<br><br>
+
+  Something seems off though. What if you think the Celtics only have a 52% chance to win? With the prices offered by another site, you don't want to make any trade.<br>
+
+  On Fortuna, you may create a new market between you and your groups.<br>
+  <img src="assets/img/create_market.png" class="w3-image w3-greyscale" style="width:100%;margin-top:48px">
+
+ </p>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-32">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+</footer>
+
+<script>
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top d-flex justify-content-around">
   <ul class="nav">
     <li *ngIf="!user" class="nav-item">
-      <a class="nav-link active" routerLink="/">Login</a>
+      <a class="nav-link active" href="/about.html">About</a>
     </li>
     <li *ngIf="user" class="nav-item">
       <a class="nav-item nav-link active" routerLink="/users/{{user}}">Profile</a>
