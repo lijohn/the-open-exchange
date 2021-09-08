@@ -47,7 +47,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Size</span>
           </div>
-          <input type="number" min="0" class="form-control" placeholder="Volume" [(ngModel)]="order.volume" name="volume">
+          <input type="number" min="0" class="form-control" placeholder="Vol" [(ngModel)]="order.volume" name="volume">
         </div>
         <div class="input-group col-4">
           <button type="submit" class="btn btn-outline-primary btn-block" (click)="addOrder()">Send</button>
@@ -62,5 +62,22 @@
       <button class="btn btn-outline-success" type="submit" (click)="settleMarket()">Settle Market</button>
     </div>
   </div>
+  <h3 class="mt-4 mb-3">Comments</h3>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Comment" [(ngModel)]="comment" name="comment">
+    <div class="input-group-append">
+      <button class="btn btn-outline-primary" type="submit" (click)="postComment()">Post</button>
+    </div>
+  </div>
+  <div *ngIf="comments.length == 0">It's a bit quiet here, post a comment above!</div>
+  <ul class="list-group">
+    <li *ngFor="let comment of comments" class="list-group-item">
+      <div class="d-flex justify-content-between">
+        <div><strong>{{comment.username}}</strong></div>
+        <div>{{comment.time | date: 'short'}}</div>
+      </div>
+      <div>{{comment.comment}}</div>
+    </li>
+  </ul>
   <br>
 </div>

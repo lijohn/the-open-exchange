@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MarketsService } from '../markets.service';
 import { Market } from '../models/market';
 import { Order } from '../models/order';
+import { Comment } from '../models/comment';
 import { UsersService } from '../users.service';
 import { GroupsService } from '../groups.service';
 
@@ -14,6 +15,8 @@ import { GroupsService } from '../groups.service';
 export class OrderComponent implements OnInit {
   currentMarket: Market = new Market;
   order: Order = new Order;
+  comments: Comment[] = [];
+  comment: string;
   bidask: boolean = true;
   message: string;
   settle: number;
@@ -48,6 +51,7 @@ export class OrderComponent implements OnInit {
       this.currentMarket = result;
       this.currentMarket.create_time = this.currentMarket.create_time.replace(' ', 'T');
       this.order.group = result.group_id;
+      this.getComments();
       this.groupsService.getGroup(result.group_id).subscribe(group => {
         this.admin = this.groupsService.isAdmin(this.userService.getUser(), group);
       })
@@ -58,6 +62,22 @@ export class OrderComponent implements OnInit {
       this.order.price = this.marketPrice;
       this.order.volume = this.marketVolume;
     });
+  }
+
+  getComments(): void {
+    this.market.getComments(this.order.security, this.order.user, this.order.pin, this.order.group)
+      .subscribe(result => {
+        this.comments = result.reverse();
+        for (let comment of this.comments) comment.time = comment.time.replace(' ', 'T');
+      });
+  }
+
+  postComment(): void {
+    this.market.postComment(this.order.security, this.comment, this.order.user, this.order.pin, this.order.group)
+      .subscribe(commentId => {
+        this.getComments();
+        this.comment = '';
+      });
   }
 
   addOrder(): void {

@@ -20,6 +20,7 @@ export class SignupComponent implements OnInit {
   }
 
   addUser() {
+    this.user = this.user.toLowerCase();
     this.userService.createUser(this.user, this.pin).subscribe(result => {
       if (result == "Username taken") this.error = result;
       else {
@@ -30,6 +31,7 @@ export class SignupComponent implements OnInit {
   }
 
   login() {
+    this.user = this.user.toLowerCase();
     this.userService.verifyUser(this.user, this.pin).subscribe(result => {
       if (!result) this.error = "Invalid Credentials";
       else {
